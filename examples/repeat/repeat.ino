@@ -1,12 +1,17 @@
-# Arduino-Timer [![Build Status](https://travis-ci.org/stejsoftware/Arduino-Timer.svg?branch=master)](https://travis-ci.org/stejsoftware/Arduino-Timer)
+#include "Timer.h"
 
-Simple software timer for the Arduino
+/*
+ *
+ * This example show how to use Timer to do a 
+ * task at a given interval. 
+ *
+ * https://github.com/stejsoftware/Arduino-Timer
+ *
+ */
+ 
+#define PIN 0   // attach an LED to this pin
 
-## Installation
-https://www.arduino.cc/en/Guide/Libraries
-
-## Usage
-```c++
+// simple function to turn an LED either on or off
 void blinker()
 {
   if( digitalRead(PIN) == HIGH )
@@ -21,6 +26,9 @@ void blinker()
   
 void setup() 
 {
+  pinMode(PIN, OUTPUT);
+  digitalWrite(PIN, LOW);
+  
   // creates a Timer that will execute once a second
   Timer.repeat(blinker, 1000);
 }
@@ -30,4 +38,3 @@ void loop()
   // checks the timer and runs the handlers of expired timers.
   Timer.run();
 }
-```

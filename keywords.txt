@@ -1,0 +1,4 @@
+Timer	KEYWORD1
+Alarm	KEYWORD1
+repeat	KEYWORD2
+delay	KEYWORD2
