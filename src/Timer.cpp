@@ -6,18 +6,15 @@
  
 #include "Timer.h"
 
-Alarm::Alarm(TimerEventHandler handler, uint16_t interval, bool repeat) :
-    m_handler(handler),
-    m_repeat(repeat),
-    m_interval(interval),
-    m_timeout(0)
+Alarm::Alarm(TimerEventHandler handler, uint32_t interval, bool repeat) : m_handler(handler),
+                                                                          m_repeat(repeat),
+                                                                          m_interval(interval),
+                                                                          m_timeout(0)
 {
-//  Serial.println("Alarm");
 }
 
 Alarm::~Alarm()
 {
-//  Serial.println("~Alarm");
 }
 
 void Alarm::reset()
@@ -56,7 +53,7 @@ TimerClass::TimerClass()
 
 TimerClass::~TimerClass()
 {
-  Alarm * alarm = NULL;
+  Alarm *alarm = NULL;
 
   while (m_alarms.pop(alarm))
   {
@@ -64,17 +61,17 @@ TimerClass::~TimerClass()
   }
 }
 
-Alarm * TimerClass::repeat(TimerEventHandler handler, uint16_t interval)
+Alarm *TimerClass::repeat(TimerEventHandler handler, uint32_t interval)
 {
-  Alarm * alarm = new Alarm(handler, interval, true);
+  Alarm *alarm = new Alarm(handler, interval, true);
   alarm->reset();
   m_alarms.push(alarm);
   return alarm;
 }
 
-Alarm * TimerClass::delay(TimerEventHandler handler, uint16_t timeout)
+Alarm *TimerClass::delay(TimerEventHandler handler, uint32_t timeout)
 {
-  Alarm * alarm = new Alarm(handler, timeout, false);
+  Alarm *alarm = new Alarm(handler, timeout, false);
   alarm->reset();
   m_alarms.push(alarm);
   return alarm;
@@ -82,7 +79,7 @@ Alarm * TimerClass::delay(TimerEventHandler handler, uint16_t timeout)
 
 void TimerClass::run()
 {
-  Alarm * alarm = NULL;
+  Alarm *alarm = NULL;
 
   if (m_alarms.pop(alarm))
   {

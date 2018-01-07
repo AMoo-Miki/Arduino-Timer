@@ -1,20 +1,19 @@
 {
-  "name": "STEJ Timer",
+  "name": "ArduinoTimer",
   "keywords": "timer, callback",
   "description": "A simple software timer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stejsoftware/Arduino-Timer"
+    "url": "https://github.com/stejsoftware/Arduino-Timer.git"
   },
-  "authors": [{
-    "name": "Jonathan Meyer",
-    "email": "jon@stejsoftware.com",
-    "url": "http://stejsoftware.com"
-  }],
-  "frameworks": [
-    "arduino"
+  "authors": [
+    {
+      "name": "Jonathan Meyer",
+      "email": "jon@stejsoftware.com",
+      "url": "https://github.com/stejsoftware/Arduino-Timer"
+    }
   ],
-  "platforms": [
-    "atmelavr"
-  ]
+  "version": "2.0.0",
+  "frameworks": "arduino",
+  "platforms": ["atmelavr", "espressif"]
 }

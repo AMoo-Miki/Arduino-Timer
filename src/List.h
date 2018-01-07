@@ -4,18 +4,17 @@
  *
  */
 
- #ifndef __List_h_
+#ifndef __List_h_
 #define __List_h_
 
-#include "Arduino.h"
+#include <Arduino.h>
 
-template<class T>
+template <class T>
 class Node
 {
 public:
-  Node(T item) :
-      next(NULL),
-      _item(item)
+  Node(T item) : next(NULL),
+                 _item(item)
   {
   }
 
@@ -28,16 +27,16 @@ public:
     return _item;
   }
 
-  Node * next;
+  Node *next;
 
 private:
-  Node(const Node & rhs);
-  Node & operator=(const Node & rhs);
+  Node(const Node &rhs);
+  Node &operator=(const Node &rhs);
 
   T _item;
 };
 
-template<class T>
+template <class T>
 class List
 {
 public:
@@ -56,7 +55,7 @@ public:
 
   bool push(T item)
   {
-    Node<T> * node = new Node<T>(item);
+    Node<T> *node = new Node<T>(item);
 
     if (node != NULL)
     {
@@ -69,7 +68,7 @@ public:
       else
       {
         // find the end of the list
-        Node<T> * end = m_begin;
+        Node<T> *end = m_begin;
 
         while (end->next != NULL)
         {
@@ -85,9 +84,9 @@ public:
     return false;
   }
 
-  bool pop(T & item)
+  bool pop(T &item)
   {
-    Node<T> * node = m_begin;
+    Node<T> *node = m_begin;
 
     if (node != NULL)
     {
@@ -103,11 +102,10 @@ public:
   }
 
 private:
-  List(const List&rhs);
-  List & operator=(const List&rhs);
+  List(const List &rhs);
+  List &operator=(const List &rhs);
 
-  Node<T> * m_begin;
-
+  Node<T> *m_begin;
 };
 
 #endif // __List_h_
