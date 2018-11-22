@@ -23,6 +23,7 @@ public:
 
   bool isTime() const;
   bool isRepeat() const;
+  bool isRunnable() const;
   void execute() const;
 
 private:

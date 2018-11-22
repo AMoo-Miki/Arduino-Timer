@@ -39,6 +39,11 @@ bool Alarm::isRepeat() const
   return m_repeat;
 }
 
+bool Alarm::isRunnable() const
+{
+  return m_handler != NULL;
+}
+
 void Alarm::execute() const
 {
   if (m_handler != NULL)
@@ -83,23 +88,30 @@ void TimerClass::run()
 
   if (m_alarms.pop(alarm))
   {
-    if (alarm->isTime())
+    if (alarm->isRunnable())
     {
-      alarm->execute();
-
-      if (alarm->isRepeat())
+      if (alarm->isTime())
       {
-        alarm->reset();
-        m_alarms.push(alarm);
+        alarm->execute();
+
+        if (alarm->isRepeat())
+        {
+          alarm->reset();
+          m_alarms.push(alarm);
+        }
+        else
+        {
+          delete alarm;
+        }
       }
       else
       {
-        delete alarm;
+        m_alarms.push(alarm);
       }
     }
     else
     {
-      m_alarms.push(alarm);
+      delete alarm;
     }
   }
 }
